@@ -3,6 +3,7 @@ import numpy as np
 from PIL import Image
 import os
 import io
+import TiffScanner as TS
 from TiffScanner import check_white_space
 
 #Load the image
@@ -50,7 +51,7 @@ def get_approved_indices(slices, white_threshold=200, white_ratio_threshold=0.75
     
     for index, slice_image in enumerate(slices):
 
-        if check_white_space(slice_image):
+        if TS.check_white_space(slice_image):
             approved_indices.append(index)
     
     return approved_indices

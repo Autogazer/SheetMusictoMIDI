@@ -21,7 +21,6 @@ def find_pixel_address(image_path, image_path_to_sample):
     
 
     # Initialize a list to store the coordinates of pixels with the target color
-    target_pixels = []
     cropped_samples = []
     bad_cropped_samples = []
     
@@ -34,13 +33,11 @@ def find_pixel_address(image_path, image_path_to_sample):
             np_sample = np.array(sample)
             # Check if the pixel color matches the target color
             if (pixels[x, y][0] >= 200) & (pixels[x,y][1] <= 100) & (pixels[x,y][2] <= 100):
-                # If it matches, add the coordinates to the list
-                target_pixels.append((pixels[x, y]))
                      
                 sample = get_cropped_sample(x, y, image_to_sample)
                 np_sample = np.array(sample)
 
-                if is_less_than_75_percent_white_space(np_sample) == True:
+                if check_white_space(np_sample) == True:
                     cropped_samples.append(get_cropped_sample(x, y, image_to_sample)) 
                     # cropped_samples.append(get_cropped_sample(x, y, image))
                             
@@ -51,12 +48,12 @@ def find_pixel_address(image_path, image_path_to_sample):
 
                 sample = get_cropped_sample(x, y, image_to_sample)
                 np_sample = np.array(sample)
-                if is_less_than_75_percent_white_space(np_sample) == True:
+                if check_white_space(np_sample) == True:
                         bad_cropped_samples.append(get_cropped_sample(x, y, image_to_sample)) 
     
-    return target_pixels, cropped_samples, bad_cropped_samples
+    return cropped_samples, bad_cropped_samples
 
-def is_less_than_75_percent_white_space(image):
+def check_white_space(image):
     # Read the image
     # image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 
