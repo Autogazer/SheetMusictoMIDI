@@ -23,27 +23,7 @@ slices = []
 slc_images = []
 slice_coordinates = []
 
-# Loop through the image to create slices
-for top in range(0, image_height, 120):
-    for left in range(0, image_width, slice_width):
 
-        # Define the box for the slice
-        box = (left, top, left + slice_width, top + slice_height)
-        
-        # Crop the image to the defined box
-        slice_image = image.crop(box)
-        
-        # Convert the slice to a numpy array and add to the list
-        slc_images.append(slice_image)
-
-        slice_image.convert("RGB")
-        slice_image = np.array(slice_image)
-        slice_image = slice_image / 255
-        slices.append(np.array(slice_image))
-
-    slice_coordinates.append((left, top))
-
-print(f"Created {len(slices)} slices.")
 
 # Function to calculate approved indices
 def get_approved_indices(slices, white_threshold=200, white_ratio_threshold=0.75):

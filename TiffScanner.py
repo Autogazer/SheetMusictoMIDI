@@ -1,4 +1,4 @@
-
+source
 
 from PIL import Image
 import os
@@ -120,23 +120,23 @@ sample_size = len(correct_cropped_samples)
 # np.save('centered_staff', correct_cropped_samples)
 # np.save('uncentered_samples', incorrect_cropped_samples)
 
-train_data_size = len(correct_cropped_samples) * 2
+# train_data_size = len(correct_cropped_samples) * 2
 
-rand_pos_indexs = np.array(range(len(correct_cropped_samples)))
-np.random.shuffle(rand_pos_indexs)
-rand_neg_indexs = np.array(range(len(incorrect_cropped_samples)))
-np.random.shuffle(rand_neg_indexs)
+# rand_pos_indexs = np.array(range(len(correct_cropped_samples)))
+# np.random.shuffle(rand_pos_indexs)
+# rand_neg_indexs = np.array(range(len(incorrect_cropped_samples)))
+# np.random.shuffle(rand_neg_indexs)
 
-training_set = []
-training_labels = []
+# training_set = []
+# training_labels = []
 
-for i in range (train_data_size):
-    if (i%2 == 0):
-        training_set.append(correct_cropped_samples[rand_pos_indexs[i//2]])
-        training_labels.append(1)
-    else:
-        training_set.append(incorrect_cropped_samples[rand_neg_indexs[i//2]])
-        training_labels.append(0)
+# for i in range (train_data_size):
+#     if (i%2 == 0):
+#         training_set.append(correct_cropped_samples[rand_pos_indexs[i//2]])
+#         training_labels.append(1)
+#     else:
+#         training_set.append(incorrect_cropped_samples[rand_neg_indexs[i//2]])
+#         training_labels.append(0)
 
-np.save('training_images', training_set)
-np.save('training_labels', training_labels)
+# np.save('training_images', training_set)
+# np.save('training_labels', training_labels)
